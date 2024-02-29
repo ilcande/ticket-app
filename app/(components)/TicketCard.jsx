@@ -21,8 +21,24 @@ const TicketCard = () => {
       <p className="whitespace-pre-wrap">
         this is the ticket description. It can be quite long and should wrap
       </p>
-      <ProgressDisplay />
-      <StatusDisplay />
+      <div className="flex-grow"></div>
+      <div className="flex mt-2">
+        <div className="flex flex-col">
+          {/* date eu */}
+          <p className="text-xs my-1">
+            {new Date().toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}{" "}
+            - {new Date().getHours()}:{new Date().getMinutes()}
+          </p>
+          <ProgressDisplay />
+        </div>
+        <div className="ml-auto flex items-end">
+          <StatusDisplay />
+        </div>
+      </div>
     </div>
   );
 };
