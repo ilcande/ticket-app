@@ -24,3 +24,13 @@ export async function POST(req, res) {
     return NextResponse.json({ Error: error.message }, { status: 500 });
   }
 }
+
+export async function GET(req, res) {
+  // Get all tickets
+  try {
+    const tickets = await prisma.ticket.findMany();
+    return NextResponse.json(tickets, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ Error: error.message }, { status: 500 });
+  }
+}

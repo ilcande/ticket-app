@@ -1,13 +1,26 @@
 import TicketCard from "./(components)/TicketCard";
 
-const Dashboard = () => {
+const getTickets = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/api/tickets", {
+      cache: "no-store",
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching tickets: ", error);
+  }
+};
+
+const Dashboard = async () => {
+  const tickets = await getTickets();
   return (
-    <div className="p-5">
-      <div className="lg:grid grid-cols-2 xl:grid-cols-4">
-        <TicketCard />
-        <TicketCard />
-        <TicketCard />
-        <TicketCard />
+    <div>
+      <h1>Dashboard</h1>
+      <div>
+        {tickets.map((ticket) => (
+          <TicketCard key={ticket.id} ticket={ticket} />
+        ))}
       </div>
     </div>
   );
