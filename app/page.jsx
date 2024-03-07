@@ -1,9 +1,10 @@
+require("dotenv").config();
 import TicketCard from "./(components)/TicketCard";
 
 const getTickets = async () => {
   let url =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:3000/api/tickets"
+      ? `${process.env.DEVELOPMENT_URL}/api/tickets`
       : `${process.env.PRODUCTION_URL}/api/tickets`;
 
   try {
