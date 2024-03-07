@@ -5,7 +5,7 @@ const getTickets = async () => {
   let url =
     process.env.NODE_ENV === "development"
       ? `${process.env.DEVELOPMENT_URL}/api/tickets`
-      : process.env.PRODUCTION_URL;
+      : `${process.env.PRODUCTION_URL}/api/tickets`;
 
   if (process.env.NODE_ENV === "production") {
     if (!url) {
