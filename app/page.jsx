@@ -5,7 +5,14 @@ const getTickets = async () => {
   let url =
     process.env.NODE_ENV === "development"
       ? `${process.env.DEVELOPMENT_URL}/api/tickets`
-      : `${process.env.PRODUCTION_URL}/api/tickets`;
+      : process.env.PRODUCTION_URL;
+
+  if (process.env.NODE_ENV === "production") {
+    if (!url) {
+      console.error("PRODUCTION_URL is not defined");
+      throw new Error("PRODUCTION_URL is not defined");
+    }
+  }
 
   try {
     const response = await fetch(url, {
